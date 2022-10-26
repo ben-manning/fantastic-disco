@@ -6,9 +6,17 @@ const PORT = process.env.PORT || 3001
 const db = require('./db')
 const { Dog } = require('./models')
 
+// get all dogs
+app.get('/dogs', async (req, res) => {
+  let allDogs = await Dog.find({})
+  res.json(allDogs)
+})
 
-app.get('/dogs', (req, res) => {
-  res.send('this is the dogs route')
+// get one dog
+app.get('/dogs/:id', async (req, res) => {
+  let foundDog = await Dog.findById(req.params.id)
+
+  res.json(foundDog)
 })
 
 app.listen(PORT, () => {
