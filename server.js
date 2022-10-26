@@ -17,13 +17,7 @@ const dogController = require('./controllers/dogController')
 
 // get all dogs
 app.get('/dogs', dogController.getAllDogs)
-
-// get one dog
-app.get('/dogs/:id', async (req, res) => {
-  let foundDog = await Dog.findById(req.params.id)
-
-  res.json(foundDog)
-})
+app.get('/dogs/:id', dogController.getOneDog)
 
 app.get('/*', (req, res) => {
   res.sendFile(`${__dirname}/client/build/index.html`)
