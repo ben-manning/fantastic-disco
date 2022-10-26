@@ -5,18 +5,18 @@ const app = express()
 const PORT = process.env.PORT || 3001
 
 const db = require('./db')
-const { Dog } = require('./models')
+
 
 // middleware
 app.use(cors())
 app.use(express.json())
 app.use(express.static(`${__dirname}/client/build`))
 
+// controllers
+const dogController = require('./controllers/dogController')
+
 // get all dogs
-app.get('/dogs', async (req, res) => {
-  let allDogs = await Dog.find({})
-  res.json(allDogs)
-})
+app.get('/dogs', dogController.getAllDogs)
 
 // get one dog
 app.get('/dogs/:id', async (req, res) => {
