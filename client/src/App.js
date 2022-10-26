@@ -24,7 +24,7 @@ function App() {
       <Routes>
         <Route path='/' element={ <Home /> } />
         <Route path='/dogs' element={ <AllDogs dogs={dogs} /> } />
-        <Route path='/dogs/:id' element={ <Dog /> } />
+        <Route path='/dogs/:id' element={ <Dog dogs={dogs} /> } />
       </Routes>
     </div>
   );
