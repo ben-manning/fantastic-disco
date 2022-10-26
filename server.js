@@ -10,6 +10,7 @@ const { Dog } = require('./models')
 // middleware
 app.use(cors())
 app.use(express.json())
+app.use(express.static(`${__dirname}/client/build`))
 
 // get all dogs
 app.get('/dogs', async (req, res) => {
@@ -22,6 +23,10 @@ app.get('/dogs/:id', async (req, res) => {
   let foundDog = await Dog.findById(req.params.id)
 
   res.json(foundDog)
+})
+
+app.get('/*', (req, res) => {
+  res.sendFile(`${__dirname}/client/build/index.html`)
 })
 
 app.listen(PORT, () => {
